@@ -1,0 +1,6 @@
+# main executable
+lemme
+
+# distributable tarfile:
+# even though we force commit it for simple installation, don't automatically track its changes
+lemme.tar.gz
