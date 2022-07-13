@@ -55,8 +55,32 @@ in, so you'll need `lemme.tar.gz` to actually install it. There might be a
 better way to do this, but I clearly don't know how MacPorts works that well.
 
 If you want to change the source code and reinstall, you'll need to rebuild the
-`lemme.tar.gz` distributable which requires `make` and `tar`, but you probably
-have those installed if you are able to install `lemme` in the first place.
+`lemme.tar.gz` distributable. This requires `make` and `tar`, but you probably
+have those installed if you are able to install `lemme` in the first place:
+
+```
+user@macbook lemme % make dist
+```
+
+Once you've made the new tarfile, MacPorts will complain about checksums if you
+try to install it the same way. You'll have to update the checksums, which you
+can obtain easily by installing with verbose mode enabled, and taking heed of
+the suggestion:
+
+```
+user@macbook lemme % sudo port -v install
+...
+The correct checksum line may be:
+checksums           rmd160  9c1185a5c5e9fc54612808977ee8f548b2258d31 \
+                    sha256  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 \
+                    size    1234
+Error: Failed to checksum lemme: Unable to verify file checksums
+...
+```
+
+The exact values will differ. Copy what you get into the Portfile exactly as it
+appears. Once you retry, it should succeed. I'm sure there's a better way
+around this problem. Oh, well.
 
 ## Bugfixes or other platforms
 I have no intention of modifying this to work with anybody else's setup. Sorry.
